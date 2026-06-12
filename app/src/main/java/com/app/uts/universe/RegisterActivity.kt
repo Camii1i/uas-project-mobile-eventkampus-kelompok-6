@@ -1,0 +1,49 @@
+package com.app.uts.universe
+
+import android.content.ContentValues
+import android.os.Bundle
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+
+class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var dbHelper: DatabaseHelper
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register)
+
+        dbHelper = DatabaseHelper(this)
+
+        val etNama = findViewById<EditText>(R.id.etNama)
+        val etUsername = findViewById<EditText>(R.id.etUsername)
+        val etPassword = findViewById<EditText>(R.id.etPassword)
+        val btnRegister = findViewById<Button>(R.id.btnRegister)
+
+        btnRegister.setOnClickListener {
+
+            val nama = etNama.text.toString()
+            val username = etUsername.text.toString()
+            val password = etPassword.text.toString()
+
+            if (nama.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Semua field harus diisi", Toast.LENGTH_SHORT).show()
+            } else {
+
+                val db = dbHelper.writableDatabase
+                val values = ContentValues()
+
+                values.put("nama", nama)
+                values.put("username", username)
+                values.put("password", password)
+                values.put("role", "mahasiswa")
+
+                db.insert("user", null, values)
+
+                Toast.makeText(this, "Register berhasil", Toast.LENGTH_SHORT).show()
+
+                finish() // kembali ke Login
+            }
+        }
+    }
+}

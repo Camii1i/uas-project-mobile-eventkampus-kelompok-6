@@ -1,9 +1,11 @@
-package com.app.uts.universe
+package com.app.uts.universe.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.app.uts.universe.model.Event
+import com.app.uts.universe.model.Riwayat
 
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, "eventkampus.db", null, 2) { // Naikkan versi ke 2 agar tabel riwayat terbuat

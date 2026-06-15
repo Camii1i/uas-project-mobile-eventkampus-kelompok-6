@@ -1,9 +1,13 @@
-package com.app.uts.universe
+package com.app.uts.universe.activity
 
 import android.content.ContentValues
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.app.uts.universe.database.DatabaseHelper
+import com.app.uts.universe.R
 
 class RegisterActivity : AppCompatActivity() {
 

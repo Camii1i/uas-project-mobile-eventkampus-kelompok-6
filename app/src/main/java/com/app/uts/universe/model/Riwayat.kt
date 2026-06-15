@@ -1,4 +1,4 @@
-package com.app.uts.universe
+package com.app.uts.universe.model
 
 data class Riwayat(
     val idRiwayat: Int,

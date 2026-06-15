@@ -13,27 +13,27 @@
         android:theme="@style/Theme.UniVerse">
 
         <activity
-            android:name=".RiwayatActivity"
+            android:name=".activity.RiwayatActivity"
             android:exported="false" />
 
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:exported="false" />
 
         <activity
-            android:name=".AdminActivity"
+            android:name=".activity.AdminActivity"
             android:exported="false" />
 
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:exported="false" />
 
         <activity
-            android:name=".DetailEventActivity"
+            android:name=".activity.DetailEventActivity"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

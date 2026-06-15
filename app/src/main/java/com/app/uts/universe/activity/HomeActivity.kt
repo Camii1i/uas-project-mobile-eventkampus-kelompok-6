@@ -1,4 +1,4 @@
-package com.app.uts.universe
+package com.app.uts.universe.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,9 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.uts.universe.database.DatabaseHelper
+import com.app.uts.universe.adapter.MahasiswaEventAdapter
+import com.app.uts.universe.R
 
 class HomeActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.app.uts.universe
+package com.app.uts.universe.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.app.uts.universe.model.Event
+import com.app.uts.universe.R
+import com.app.uts.universe.activity.DetailEventActivity
 
 class MahasiswaEventAdapter(
     private val listEvent: ArrayList<Event>,

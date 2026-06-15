@@ -1,4 +1,4 @@
-# 🌐 Universe — Aplikasi Manajemen Seminar
+# Universe — Aplikasi Manajemen Seminar
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Android-green?style=for-the-badge&logo=android" />
@@ -9,7 +9,7 @@
 
 ---
 
-## 📖 Tentang Aplikasi
+## Tentang Aplikasi
 
 **Universe** adalah aplikasi Android untuk manajemen seminar yang dapat diakses oleh dua jenis pengguna, yaitu **Admin** dan **Mahasiswa**.
 
@@ -18,9 +18,9 @@
 
 ---
 
-## ✨ Fitur Utama
+## Fitur Utama
 
-### 👨‍💼 Admin
+### Admin
 | Fitur | Keterangan |
 |-------|------------|
 | Login Admin | Akses khusus dengan kredensial admin |
@@ -29,7 +29,7 @@
 | Hapus Event | Menghapus event dari sistem |
 | Kelola Peserta | Melihat mahasiswa yang mendaftar |
 
-### 🎓 Mahasiswa
+### Mahasiswa
 | Fitur | Keterangan |
 |-------|------------|
 | Register & Login | Daftar dan masuk sebagai mahasiswa |
@@ -40,7 +40,7 @@
 
 ---
 
-## 🏗️ Struktur Project
+## Struktur Project
 
 ```
 com.app.uts.universe
@@ -60,7 +60,7 @@ com.app.uts.universe
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 - **Bahasa:** Kotlin / Java
 - **Platform:** Android (Android Studio)
@@ -70,7 +70,7 @@ com.app.uts.universe
 
 ---
 
-## 🚀 Cara Menjalankan
+## Cara Menjalankan
 
 ### Prasyarat
 - Android Studio (versi terbaru)
@@ -95,23 +95,23 @@ Klik tombol ▶️ Run atau Shift+F10
 
 ---
 
-## 👤 Akun Default
+## Akun Default
 
 | Role | Username | Password |
 |------|----------|----------|
 | Admin | admin | admin123 |
 
-> ⚠️ Mahasiswa dapat membuat akun sendiri melalui fitur **Register**
+> Mahasiswa dapat membuat akun sendiri melalui fitur **Register**
 
 ---
 
-## 📱 Screenshot
+## Screenshot
 
 > *Coming soon...*
 
 ---
 
-## 👥 Tim Pengembang
+## Tim Pengembang
 
 | Nama | NIM |
 |------|-----|
@@ -123,7 +123,7 @@ Klik tombol ▶️ Run atau Shift+F10
 
 ---
 
-## 📄 Lisensi
+## Lisensi
 
 Project ini dibuat untuk keperluan **UAS Mata Kuliah Pemrograman Mobile**  
 Universitas Pembangunan Nasional Veteran Jakarta © 2025

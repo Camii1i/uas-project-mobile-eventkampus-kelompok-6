@@ -1,5 +1,6 @@
 package com.app.uts.universe.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -57,7 +58,13 @@ class DetailEventActivity : AppCompatActivity() {
             )
 
             if (isSuccess) {
-                Toast.makeText(this, "Berhasil mendaftar event!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, SuccessActivity::class.java)
+                intent.putExtra("nama_event", namaEvent)
+                intent.putExtra("tanggal", tanggal)
+                intent.putExtra("lokasi", lokasi)
+                intent.putExtra("username", usernameMahasiswa)
+                startActivity(intent)
+                finish()
             } else {
                 Toast.makeText(this, "Gagal mendaftar. Silakan coba lagi.", Toast.LENGTH_SHORT).show()
             }

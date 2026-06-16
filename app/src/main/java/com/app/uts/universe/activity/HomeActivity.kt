@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.app.uts.universe.R
+import com.app.uts.universe.ThemeManager  // ← TAMBAH
 import com.app.uts.universe.adapter.ViewPagerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -16,6 +17,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var btnLogout: Button
+    private lateinit var btnToggleTheme: Button  // ← TAMBAH
     private lateinit var tvUsername: TextView
 
     private var username = ""
@@ -29,21 +31,25 @@ class HomeActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.viewPager)
         bottomNavigation = findViewById(R.id.bottomNavigation)
         btnLogout = findViewById(R.id.btnLogout)
+        btnToggleTheme = findViewById(R.id.btnToggleTheme)
         tvUsername = findViewById(R.id.tvUsername)
 
         tvUsername.text = username
 
-        // Setup ViewPager2
+        updateThemeButton()
+
+        btnToggleTheme.setOnClickListener {
+            ThemeManager.toggleTheme(this)
+        }
+
         viewPager.adapter = ViewPagerAdapter(this, username)
 
-        // Sinkronisasi ViewPager2 → BottomNav
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 bottomNavigation.menu.getItem(position).isChecked = true
             }
         })
 
-        // Sinkronisasi BottomNav → ViewPager2
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> viewPager.currentItem = 0
@@ -52,9 +58,20 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
-        // Logout
+        if (intent.getBooleanExtra("openRiwayat", false)) {
+            viewPager.currentItem = 1
+        }
+
         btnLogout.setOnClickListener {
             showLogoutDialog()
+        }
+    }
+
+    private fun updateThemeButton() {
+        if (ThemeManager.isDarkMode(this)) {
+            btnToggleTheme.text = "☀️"
+        } else {
+            btnToggleTheme.text = "🌙"
         }
     }
 

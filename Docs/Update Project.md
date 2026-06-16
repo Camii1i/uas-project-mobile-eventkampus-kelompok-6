@@ -33,10 +33,10 @@
 ### UI / UX Design
 - [x] Login Page (UI selesai & clean)
 - [x] Login Success Page (UI selesai)
-- [x] Register Page (**Belum Dibuat**)
-- [x] Admin Dashboard UI improvement
-- [x] Home Mahasiswa UI improvement
-- [x] Riwayat Page
+- [ ] Register Page (**Belum Dibuat**)
+- [ ] Admin Dashboard UI improvement
+- [ ] Home Mahasiswa UI improvement
+- [ ] Riwayat Page
 
 ### Perancangan Sistem (BAB III)
 - [ ] Use Case Diagram

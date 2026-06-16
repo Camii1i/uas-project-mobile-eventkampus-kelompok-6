@@ -1,7 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.UniVerse" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/indigo_primary</item>
+        <item name="colorOnPrimary">@color/dark_text_primary</item>
+        <item name="colorSurface">@color/dark_card</item>
+        <item name="colorOnSurface">@color/dark_text_primary</item>
+        <item name="android:colorBackground">@color/dark_background</item>
+        <item name="android:textColorPrimary">@color/dark_text_primary</item>
+        <item name="android:textColorSecondary">@color/dark_text_secondary</item>
+
+        <!-- Attr adaptif Dark -->
+        <item name="colorBackground">@color/dark_background</item>
+        <item name="colorCard">@color/dark_card</item>
+        <item name="colorBorder">@color/dark_border</item>
+        <item name="colorTextPrimary">@color/dark_text_primary</item>
+        <item name="colorTextSecondary">@color/dark_text_secondary</item>
+        <item name="colorTextMuted">@color/dark_text_muted</item>
     </style>
+
+    <style name="InputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/dark_border</item>
+        <item name="boxBackgroundColor">@color/dark_background</item>
+        <item name="hintTextColor">@color/dark_text_muted</item>
+        <item name="android:textColorHint">@color/dark_text_muted</item>
+    </style>
+
 </resources>

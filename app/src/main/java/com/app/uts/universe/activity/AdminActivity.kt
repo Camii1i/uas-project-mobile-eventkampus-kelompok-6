@@ -1,6 +1,7 @@
 package com.app.uts.universe.activity
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -25,6 +26,7 @@ class AdminActivity :
     private lateinit var etLokasi: EditText
     private lateinit var etDeskripsi: EditText
     private lateinit var btnSimpan: Button
+    private lateinit var btnLogout: Button  // ← TAMBAH INI
 
     private lateinit var db: DatabaseHelper
 
@@ -45,8 +47,14 @@ class AdminActivity :
         etLokasi = findViewById(R.id.etLokasi)
         etDeskripsi = findViewById(R.id.etDeskripsi)
         btnSimpan = findViewById(R.id.btnSimpan)
+        btnLogout = findViewById(R.id.btnLogout)  // ← TAMBAH INI
 
         loadData()
+
+        // ← TAMBAH INI
+        btnLogout.setOnClickListener {
+            showLogoutDialog()
+        }
 
         btnSimpan.setOnClickListener {
 
@@ -62,141 +70,94 @@ class AdminActivity :
                 lokasi.isEmpty() ||
                 deskripsi.isEmpty()
             ) {
-
                 Toast.makeText(
                     this,
                     "Semua field harus diisi",
                     Toast.LENGTH_SHORT
                 ).show()
-
                 return@setOnClickListener
             }
 
-            // CREATE
             if (selectedEventId == -1) {
-
-                val berhasil = db.insertEvent(
-                    nama,
-                    kategori,
-                    tanggal,
-                    lokasi,
-                    deskripsi
-                )
-
+                val berhasil = db.insertEvent(nama, kategori, tanggal, lokasi, deskripsi)
                 if (berhasil) {
-
-                    Toast.makeText(
-                        this,
-                        "Event berhasil ditambahkan",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                    Toast.makeText(this, "Event berhasil ditambahkan", Toast.LENGTH_SHORT).show()
                     clearForm()
                     loadData()
-
                 } else {
-
-                    Toast.makeText(
-                        this,
-                        "Gagal menambahkan event",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Gagal menambahkan event", Toast.LENGTH_SHORT).show()
                 }
-
             } else {
-
-                // UPDATE
-                val berhasil = db.updateEvent(
-                    selectedEventId,
-                    nama,
-                    kategori,
-                    tanggal,
-                    lokasi,
-                    deskripsi
-                )
-
+                val berhasil = db.updateEvent(selectedEventId, nama, kategori, tanggal, lokasi, deskripsi)
                 if (berhasil) {
-
-                    Toast.makeText(
-                        this,
-                        "Event berhasil diperbarui",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                    Toast.makeText(this, "Event berhasil diperbarui", Toast.LENGTH_SHORT).show()
                     clearForm()
                     loadData()
-
                 } else {
-
-                    Toast.makeText(
-                        this,
-                        "Gagal memperbarui event",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Gagal memperbarui event", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
+    // ← TAMBAH FUNGSI INI
+    private fun showLogoutDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Logout")
+            .setMessage("Apakah kamu yakin ingin keluar?")
+            .setPositiveButton("Ya") { _, _ ->
+                logout()
+            }
+            .setNegativeButton("Batal") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    // ← TAMBAH FUNGSI INI
+    private fun logout() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
+
     private fun loadData() {
-
         val listEvent = db.getAllEvent()
-
         rvEvent.adapter = EventAdapter(listEvent, this)
     }
 
     private fun clearForm() {
-
         etNama.text.clear()
         etKategori.text.clear()
         etTanggal.text.clear()
         etLokasi.text.clear()
         etDeskripsi.text.clear()
-
         selectedEventId = -1
-
         btnSimpan.text = "Simpan Event"
     }
 
     override fun onEdit(event: Event) {
-
         selectedEventId = event.id
-
         etNama.setText(event.nama)
         etKategori.setText(event.kategori)
         etTanggal.setText(event.tanggal)
         etLokasi.setText(event.lokasi)
         etDeskripsi.setText(event.deskripsi)
-
         btnSimpan.text = "Update Event"
     }
 
     override fun onDelete(event: Event) {
-
         AlertDialog.Builder(this)
             .setTitle("Hapus Event")
             .setMessage("Yakin ingin menghapus event ini?")
             .setPositiveButton("Ya") { _, _ ->
-
                 val berhasil = db.deleteEvent(event.id)
-
                 if (berhasil) {
-
-                    Toast.makeText(
-                        this,
-                        "Event berhasil dihapus",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                    Toast.makeText(this, "Event berhasil dihapus", Toast.LENGTH_SHORT).show()
                     loadData()
-
                 } else {
-
-                    Toast.makeText(
-                        this,
-                        "Gagal menghapus event",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Gagal menghapus event", Toast.LENGTH_SHORT).show()
                 }
             }
             .setNegativeButton("Tidak", null)

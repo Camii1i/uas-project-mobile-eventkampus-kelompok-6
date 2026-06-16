@@ -6,19 +6,17 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.app.uts.universe.database.DatabaseHelper
-import com.app.uts.universe.adapter.MahasiswaEventAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.app.uts.universe.R
+import com.app.uts.universe.adapter.ViewPagerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var rvMahasiswa: RecyclerView
+    private lateinit var viewPager: ViewPager2
+    private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var btnLogout: Button
     private lateinit var tvUsername: TextView
-    private lateinit var bottomNavigation: BottomNavigationView
 
     private var username = ""
 
@@ -28,39 +26,35 @@ class HomeActivity : AppCompatActivity() {
 
         username = intent.getStringExtra("username") ?: ""
 
-        rvMahasiswa = findViewById(R.id.rvMahasiswa)
+        viewPager = findViewById(R.id.viewPager)
+        bottomNavigation = findViewById(R.id.bottomNavigation)
         btnLogout = findViewById(R.id.btnLogout)
         tvUsername = findViewById(R.id.tvUsername)
-        bottomNavigation = findViewById(R.id.bottomNavigation)
 
         tvUsername.text = username
 
-        rvMahasiswa.layoutManager = LinearLayoutManager(this)
+        // Setup ViewPager2
+        viewPager.adapter = ViewPagerAdapter(this, username)
 
-        val db = DatabaseHelper(this)
-        val listEvent = db.getAllEvent()
-        rvMahasiswa.adapter = MahasiswaEventAdapter(listEvent, username)
+        // Sinkronisasi ViewPager2 → BottomNav
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                bottomNavigation.menu.getItem(position).isChecked = true
+            }
+        })
+
+        // Sinkronisasi BottomNav → ViewPager2
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> viewPager.currentItem = 0
+                R.id.nav_riwayat -> viewPager.currentItem = 1
+            }
+            true
+        }
 
         // Logout
         btnLogout.setOnClickListener {
             showLogoutDialog()
-        }
-
-        // Bottom Navigation
-        bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    // Sudah di Home, tidak perlu navigasi
-                    true
-                }
-                R.id.nav_riwayat -> {
-                    val intent = Intent(this, RiwayatActivity::class.java)
-                    intent.putExtra("username", username)
-                    startActivity(intent)
-                    true
-                }
-                else -> false
-            }
         }
     }
 
@@ -68,12 +62,8 @@ class HomeActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle("Logout")
             .setMessage("Apakah kamu yakin ingin keluar?")
-            .setPositiveButton("Ya") { _, _ ->
-                logout()
-            }
-            .setNegativeButton("Batal") { dialog, _ ->
-                dialog.dismiss()
-            }
+            .setPositiveButton("Ya") { _, _ -> logout() }
+            .setNegativeButton("Batal") { dialog, _ -> dialog.dismiss() }
             .show()
     }
 

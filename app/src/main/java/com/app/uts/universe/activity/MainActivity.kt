@@ -1,5 +1,6 @@
 package com.app.uts.universe.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -77,6 +78,10 @@ class MainActivity : AppCompatActivity() {
                         "Login Mahasiswa Berhasil",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    // Simpan session username ke SharedPreferences agar bisa diakses di Profile
+                    val sharedPref = getSharedPreferences("user_pref", Context.MODE_PRIVATE)
+                    sharedPref.edit().putString("username", username).apply()
 
                     // Kirim username ke HomeActivity
                     val intent = Intent(this, HomeActivity::class.java)

@@ -13,6 +13,8 @@ import com.app.uts.universe.database.DatabaseHelper
 import com.app.uts.universe.model.Event
 import com.app.uts.universe.adapter.EventAdapter
 import com.app.uts.universe.R
+import com.app.uts.universe.ThemeManager
+import com.google.android.material.card.MaterialCardView
 
 class AdminActivity :
     AppCompatActivity(),
@@ -26,13 +28,15 @@ class AdminActivity :
     private lateinit var etLokasi: EditText
     private lateinit var etDeskripsi: EditText
     private lateinit var btnSimpan: Button
-    private lateinit var btnLogout: Button  // ← TAMBAH INI
+    private lateinit var btnLogout: Button
+    private lateinit var btnProfileAdmin: MaterialCardView
 
     private lateinit var db: DatabaseHelper
 
     private var selectedEventId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        ThemeManager.applySavedTheme(this) // Wajib panggil ThemeManager
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin)
 
@@ -47,13 +51,18 @@ class AdminActivity :
         etLokasi = findViewById(R.id.etLokasi)
         etDeskripsi = findViewById(R.id.etDeskripsi)
         btnSimpan = findViewById(R.id.btnSimpan)
-        btnLogout = findViewById(R.id.btnLogout)  // ← TAMBAH INI
+        btnLogout = findViewById(R.id.btnLogout)
+        btnProfileAdmin = findViewById(R.id.btnProfileAdmin)
 
         loadData()
 
-        // ← TAMBAH INI
         btnLogout.setOnClickListener {
             showLogoutDialog()
+        }
+
+        // Ke Halaman Profil Admin
+        btnProfileAdmin.setOnClickListener {
+            startActivity(Intent(this, ProfileAdminActivity::class.java))
         }
 
         btnSimpan.setOnClickListener {
@@ -100,7 +109,6 @@ class AdminActivity :
         }
     }
 
-    // ← TAMBAH FUNGSI INI
     private fun showLogoutDialog() {
         AlertDialog.Builder(this)
             .setTitle("Logout")
@@ -114,7 +122,6 @@ class AdminActivity :
             .show()
     }
 
-    // ← TAMBAH FUNGSI INI
     private fun logout() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

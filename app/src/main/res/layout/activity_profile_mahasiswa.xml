@@ -33,16 +33,20 @@
             android:orientation="vertical">
 
             <!-- Header Section -->
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:background="@drawable/gradient_indigo">
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_indigo"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="32dp"
+                android:paddingBottom="40dp"
+                android:paddingHorizontal="16dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardAvatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_centerInParent="true"
                     app:cardBackgroundColor="@color/indigo_primary"
                     app:cardCornerRadius="50dp"
                     app:strokeColor="@color/light_card"
@@ -60,29 +64,28 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Nama -->
                 <TextView
                     android:id="@+id/tvProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardAvatar"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="16dp"
                     android:text="User Name"
                     android:textColor="@color/light_card"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
+                <!-- NIM -->
                 <TextView
                     android:id="@+id/tvProfileNim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvProfileName"
-                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="6dp"
                     android:text="NIM Mahasiswa"
                     android:textColor="@color/indigo_muted"
                     android:textSize="16sp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

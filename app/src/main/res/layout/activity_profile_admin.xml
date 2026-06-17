@@ -33,16 +33,20 @@
             android:orientation="vertical">
 
             <!-- Header Section -->
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:background="@drawable/gradient_indigo">
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_indigo"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="32dp"
+                android:paddingBottom="40dp"
+                android:paddingHorizontal="16dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardAvatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_centerInParent="true"
                     app:cardBackgroundColor="@color/indigo_primary"
                     app:cardCornerRadius="50dp"
                     app:strokeColor="@color/light_card"
@@ -60,45 +64,43 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Badge ADMIN -->
                 <TextView
                     android:id="@+id/tvAdminBadge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/cardAvatar"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="-12dp"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/bg_badge_indigo"
+                    android:elevation="6dp"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="4dp"
                     android:text="ADMIN"
                     android:textColor="@color/light_card"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:elevation="6dp"/>
+                    android:textStyle="bold" />
 
+                <!-- Nama Admin -->
                 <TextView
                     android:id="@+id/tvAdminProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvAdminBadge"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="16dp"
                     android:text="Nama Admin"
                     android:textColor="@color/light_card"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
+                <!-- Email Admin -->
                 <TextView
                     android:id="@+id/tvAdminProfileEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvAdminProfileName"
-                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
                     android:text="admin@universe.com"
                     android:textColor="@color/indigo_muted"
                     android:textSize="14sp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

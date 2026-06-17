@@ -25,6 +25,14 @@
         <item name="boxBackgroundColor">@color/light_card</item>
         <item name="hintTextColor">@color/light_text_muted</item>
         <item name="android:textColorHint">@color/light_text_muted</item>
+        <item name="android:windowAnimationStyle">@style/FadeAnimation</item>
+    </style>
+
+    <style name="FadeAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
     </style>
 
 </resources>

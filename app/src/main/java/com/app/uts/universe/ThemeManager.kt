@@ -1,5 +1,6 @@
 package com.app.uts.universe
 
+import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 
@@ -13,11 +14,12 @@ object ThemeManager {
         return pref.getBoolean(KEY_IS_DARK, true) // default dark
     }
 
-    fun toggleTheme(context: Context) {
-        val pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val current = isDarkMode(context)
+    fun toggleTheme(activity: Activity) {
+        val pref = activity.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val current = isDarkMode(activity)
         pref.edit().putBoolean(KEY_IS_DARK, !current).apply()
         applyTheme(!current)
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     fun applyTheme(isDark: Boolean) {

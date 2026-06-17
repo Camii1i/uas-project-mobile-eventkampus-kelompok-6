@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import com.app.uts.universe.database.DatabaseHelper
 import com.app.uts.universe.R
 
@@ -23,6 +24,11 @@ class RegisterActivity : AppCompatActivity() {
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
+        val btnBackToLogin = findViewById<MaterialButton>(R.id.btnBackToLogin)
+
+        btnBackToLogin.setOnClickListener {
+            finish()
+        }
 
         btnRegister.setOnClickListener {
 

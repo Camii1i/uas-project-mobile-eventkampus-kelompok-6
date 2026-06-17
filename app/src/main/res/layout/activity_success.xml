@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        android:minHeight="600dp">
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:background="@drawable/bg_success_circle"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_check" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pendaftaran Berhasil!"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorTextPrimary"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kamu berhasil mendaftar seminar"
+            android:textSize="13sp"
+            android:textColor="?attr/colorTextSecondary"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvNamaEventSuccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp"
+            android:textColor="@color/indigo_soft"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tanggal"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorTextMuted" />
+
+                <TextView
+                    android:id="@+id/tvTanggalSuccess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorTextPrimary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Lokasi"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorTextMuted" />
+
+                <TextView
+                    android:id="@+id/tvLokasiSuccess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorTextPrimary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Status"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorTextMuted" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terdaftar"
+                    android:textSize="12sp"
+                    android:textColor="@color/indigo_muted"
+                    android:background="@drawable/bg_badge_indigo"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnLihatRiwayat"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Lihat Riwayat"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/indigo_primary"
+            android:stateListAnimator="@null"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btnKembaliHome"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Kembali ke Home"
+            android:textColor="?attr/colorTextSecondary"
+            android:backgroundTint="?attr/colorCard"
+            android:stateListAnimator="@null" />
+
+    </LinearLayout>
+
+</ScrollView>

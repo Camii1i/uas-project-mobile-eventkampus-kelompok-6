@@ -1,6 +1,6 @@
 package com.app.uts.universe.activity
 
-import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -8,42 +8,43 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.app.uts.universe.R
+import com.app.uts.universe.ThemeManager
 import com.app.uts.universe.adapter.ViewPagerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.card.MaterialCardView
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigation: BottomNavigationView
-    private lateinit var btnLogout: Button
+    private lateinit var btnToggleTheme: Button
     private lateinit var tvUsername: TextView
+    private lateinit var btnProfile: MaterialCardView
+    private lateinit var tvInitial: TextView
 
     private var username = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Wajib panggil ThemeManager.applyTheme(this) sebelum super.onCreate()
+        ThemeManager.applySavedTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         username = intent.getStringExtra("username") ?: ""
 
-        viewPager = findViewById(R.id.viewPager)
-        bottomNavigation = findViewById(R.id.bottomNavigation)
-        btnLogout = findViewById(R.id.btnLogout)
-        tvUsername = findViewById(R.id.tvUsername)
+        initViews()
+        setupListeners()
+        loadUserData()
+        updateThemeButton()
 
-        tvUsername.text = username
-
-        // Setup ViewPager2
         viewPager.adapter = ViewPagerAdapter(this, username)
 
-        // Sinkronisasi ViewPager2 → BottomNav
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 bottomNavigation.menu.getItem(position).isChecked = true
             }
         })
 
-        // Sinkronisasi BottomNav → ViewPager2
         bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> viewPager.currentItem = 0
@@ -52,25 +53,57 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
-        // Logout
-        btnLogout.setOnClickListener {
-            showLogoutDialog()
+        if (intent.getBooleanExtra("openRiwayat", false)) {
+            viewPager.currentItem = 1
         }
     }
 
-    private fun showLogoutDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Logout")
-            .setMessage("Apakah kamu yakin ingin keluar?")
-            .setPositiveButton("Ya") { _, _ -> logout() }
-            .setNegativeButton("Batal") { dialog, _ -> dialog.dismiss() }
-            .show()
+    private fun initViews() {
+        viewPager = findViewById(R.id.viewPager)
+        bottomNavigation = findViewById(R.id.bottomNavigation)
+        btnToggleTheme = findViewById(R.id.btnToggleTheme)
+        tvUsername = findViewById(R.id.tvUsername)
+        btnProfile = findViewById(R.id.btnProfile)
+        tvInitial = findViewById(R.id.tvInitial)
     }
 
-    private fun logout() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        finish()
+    private fun setupListeners() {
+        btnToggleTheme.setOnClickListener {
+            ThemeManager.toggleTheme(this)
+            updateThemeButton()
+        }
+
+        btnProfile.setOnClickListener {
+            val intent = Intent(this, ProfileMahasiswaActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun loadUserData() {
+        val sharedPref = getSharedPreferences("user_pref", Context.MODE_PRIVATE)
+        val nama = sharedPref.getString("nama", null)
+        
+        // Tampilkan username dari intent jika nama di pref kosong
+        tvUsername.text = nama ?: username
+        
+        // Set inisial avatar
+        val initialSource = nama ?: username
+        if (initialSource.isNotEmpty()) {
+            tvInitial.text = initialSource[0].uppercaseChar().toString()
+        }
+    }
+
+    private fun updateThemeButton() {
+        if (ThemeManager.isDarkMode(this)) {
+            btnToggleTheme.text = "☀️"
+        } else {
+            btnToggleTheme.text = "🌙"
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Reload data jika user baru saja edit profil
+        loadUserData()
     }
 }

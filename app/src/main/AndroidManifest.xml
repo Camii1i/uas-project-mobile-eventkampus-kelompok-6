@@ -33,6 +33,18 @@
             android:exported="false" />
 
         <activity
+            android:name=".activity.SuccessActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.ProfileMahasiswaActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.ProfileAdminActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>

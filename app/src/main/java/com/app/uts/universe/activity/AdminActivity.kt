@@ -27,6 +27,7 @@ class AdminActivity :
     private lateinit var etTanggal: EditText
     private lateinit var etLokasi: EditText
     private lateinit var etDeskripsi: EditText
+    private lateinit var etBenefit: EditText
     private lateinit var btnSimpan: Button
     private lateinit var btnLogout: Button
     private lateinit var btnProfileAdmin: MaterialCardView
@@ -50,6 +51,7 @@ class AdminActivity :
         etTanggal = findViewById(R.id.etTanggal)
         etLokasi = findViewById(R.id.etLokasi)
         etDeskripsi = findViewById(R.id.etDeskripsi)
+        etBenefit = findViewById(R.id.etBenefit)
         btnSimpan = findViewById(R.id.btnSimpan)
         btnLogout = findViewById(R.id.btnLogout)
         btnProfileAdmin = findViewById(R.id.btnProfileAdmin)
@@ -87,8 +89,9 @@ class AdminActivity :
                 return@setOnClickListener
             }
 
+            val benefit = etBenefit.text.toString().trim()
             if (selectedEventId == -1) {
-                val berhasil = db.insertEvent(nama, kategori, tanggal, lokasi, deskripsi)
+                val berhasil = db.insertEvent(nama, kategori, tanggal, lokasi, deskripsi, benefit)
                 if (berhasil) {
                     Toast.makeText(this, "Event berhasil ditambahkan", Toast.LENGTH_SHORT).show()
                     clearForm()
@@ -97,7 +100,7 @@ class AdminActivity :
                     Toast.makeText(this, "Gagal menambahkan event", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                val berhasil = db.updateEvent(selectedEventId, nama, kategori, tanggal, lokasi, deskripsi)
+                val berhasil = db.updateEvent(selectedEventId, nama, kategori, tanggal, lokasi, deskripsi, benefit)
                 if (berhasil) {
                     Toast.makeText(this, "Event berhasil diperbarui", Toast.LENGTH_SHORT).show()
                     clearForm()
@@ -140,6 +143,7 @@ class AdminActivity :
         etTanggal.text.clear()
         etLokasi.text.clear()
         etDeskripsi.text.clear()
+        etBenefit.text.clear()
         selectedEventId = -1
         btnSimpan.text = "Simpan Event"
     }
@@ -151,6 +155,7 @@ class AdminActivity :
         etTanggal.setText(event.tanggal)
         etLokasi.setText(event.lokasi)
         etDeskripsi.setText(event.deskripsi)
+        etBenefit.setText(event.benefit)
         btnSimpan.text = "Update Event"
     }
 

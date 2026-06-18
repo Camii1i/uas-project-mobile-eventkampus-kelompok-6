@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.app.uts.universe.database.DatabaseHelper
 import com.app.uts.universe.R
+import com.google.android.material.appbar.MaterialToolbar
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -20,6 +21,12 @@ class DetailEventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_event)
 
+        // Setup toolbar as action bar with back button
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Detail Event"
+
         dbHelper = DatabaseHelper(this)
 
         // 1. Menangkap ID Event dan Username dari Adapter (Tanpa data dummy "mahasiswa_test" lagi)
@@ -31,12 +38,34 @@ class DetailEventActivity : AppCompatActivity() {
         val tanggal = intent.getStringExtra("tanggal")
         val lokasi = intent.getStringExtra("lokasi")
         val deskripsi = intent.getStringExtra("deskripsi")
+        val benefitStr = intent.getStringExtra("benefit") ?: ""
 
         findViewById<TextView>(R.id.tvNama).text = namaEvent
-        findViewById<TextView>(R.id.tvKategori).text = "Kategori : $kategori"
-        findViewById<TextView>(R.id.tvTanggal).text = "Tanggal : $tanggal"
-        findViewById<TextView>(R.id.tvLokasi).text = "Lokasi : $lokasi"
+        // tvKategori previously showed "Kategori : ..."; keep that but remove background when setting text
+        findViewById<TextView>(R.id.tvKategori).text = kategori
+        findViewById<TextView>(R.id.tvTanggal).text = tanggal?.let { "Tanggal : $it" } ?: ""
+        findViewById<TextView>(R.id.tvLokasi).text = lokasi?.let { "Lokasi : $it" } ?: ""
         findViewById<TextView>(R.id.tvDeskripsi).text = deskripsi
+
+        // Benefit handling (delimiter: newline)
+        val tvBenefitTitle = findViewById<TextView>(R.id.tvBenefitTitle)
+        val llBenefitContainer = findViewById<android.widget.LinearLayout>(R.id.llBenefitContainer)
+        if (benefitStr.isNotBlank()) {
+            tvBenefitTitle.visibility = android.view.View.VISIBLE
+            llBenefitContainer.visibility = android.view.View.VISIBLE
+            val items = benefitStr.split("\n").map { it.trim() }.filter { it.isNotEmpty() }
+            for (item in items) {
+                val tv = TextView(this)
+                tv.text = "• $item"
+                tv.setTextColor(android.graphics.Color.parseColor("#F1F5F9"))
+                tv.textSize = 14f
+                tv.setPadding(8,8,8,8)
+                llBenefitContainer.addView(tv)
+            }
+        } else {
+            tvBenefitTitle.visibility = android.view.View.GONE
+            llBenefitContainer.visibility = android.view.View.GONE
+        }
 
         val btnDaftar = findViewById<Button>(R.id.btnDaftar)
 
@@ -69,5 +98,10 @@ class DetailEventActivity : AppCompatActivity() {
                 Toast.makeText(this, "Gagal mendaftar. Silakan coba lagi.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 }

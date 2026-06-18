@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< ours
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#1E293B"
-        android:titleTextColor="#F1F5F9" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="?attr/colorBackground">
-=======
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -45,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
->>>>>>> theirs
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,87 +33,26 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-<<<<<<< ours
-            <LinearLayout
-                android:id="@+id/cardInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="@drawable/bg_card_detail">
-
-                <TextView
-                    android:id="@+id/tvNama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorTextPrimary"/>
-
-                <TextView
-                    android:id="@+id/tvKategori"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_badge_kategori"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:textColor="@color/indigo_soft"/>
-
-                <TextView
-                    android:id="@+id/tvTanggal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textColor="?attr/colorTextSecondary"/>
-
-                <TextView
-                    android:id="@+id/tvLokasi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorTextSecondary"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Deskripsi"
-                    android:textStyle="bold"
-                    android:layout_marginTop="16dp"
-                    android:textColor="?attr/colorTextPrimary"/>
-
-                <TextView
-                    android:id="@+id/tvDeskripsi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/colorTextPrimary"/>
-
-            </LinearLayout>
-
-            <!-- Benefit section (dynamically populated) -->
-=======
-            <!-- Event Name (Judul Besar) -->
             <TextView
                 android:id="@+id/tvNama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                android:layout_marginBottom="12dp"
                 android:textColor="?attr/colorTextPrimary"
-                android:layout_marginBottom="12dp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-            <!-- Badge Kategori -->
             <TextView
                 android:id="@+id/tvKategori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/bg_badge_kategori"
-                android:textColor="@color/indigo_soft"
-                android:textSize="13sp"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
-                android:layout_marginBottom="16dp" />
+                android:textColor="@color/indigo_soft"
+                android:textSize="13sp" />
 
-            <!-- Info Card (Tanggal & Lokasi) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,79 +69,77 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <!-- Tanggal Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp"
                         android:gravity="center_vertical"
-                        android:layout_marginBottom="12dp">
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
+                            android:contentDescription="Calendar Icon"
                             android:src="@drawable/ic_calendar"
-                            app:tint="?attr/colorTextSecondary"
-                            android:contentDescription="Calendar Icon" />
+                            app:tint="?attr/colorTextSecondary" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:marginStart="12dp">
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Tanggal"
-                                android:textSize="11sp"
-                                android:textColor="?attr/colorTextSecondary" />
+                                android:textColor="?attr/colorTextSecondary"
+                                android:textSize="11sp" />
 
                             <TextView
                                 android:id="@+id/tvTanggal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
                                 android:textColor="?attr/colorTextPrimary"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
 
                     </LinearLayout>
 
-                    <!-- Lokasi Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
+                            android:contentDescription="Location Icon"
                             android:src="@drawable/ic_location"
-                            app:tint="?attr/colorTextSecondary"
-                            android:contentDescription="Location Icon" />
+                            app:tint="?attr/colorTextSecondary" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:marginStart="12dp">
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lokasi"
-                                android:textSize="11sp"
-                                android:textColor="?attr/colorTextSecondary" />
+                                android:textColor="?attr/colorTextSecondary"
+                                android:textSize="11sp" />
 
                             <TextView
                                 android:id="@+id/tvLokasi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
                                 android:textColor="?attr/colorTextPrimary"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -233,69 +150,40 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Deskripsi Section -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
                 android:text="Deskripsi"
-                android:textSize="12sp"
                 android:textColor="?attr/colorTextSecondary"
-                android:layout_marginBottom="6dp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvDeskripsi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:layout_marginBottom="24dp"
                 android:textColor="?attr/colorTextPrimary"
-                android:layout_marginBottom="24dp" />
+                android:textSize="14sp" />
 
-            <!-- Benefit Section (dynamically populated) -->
->>>>>>> theirs
             <TextView
                 android:id="@+id/tvBenefitTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Benefit"
-<<<<<<< ours
-                android:textStyle="bold"
-                android:textColor="?attr/colorTextPrimary"
-                android:layout_marginTop="16dp"
-=======
-                android:textSize="12sp"
-                android:textColor="?attr/colorTextSecondary"
                 android:layout_marginBottom="6dp"
->>>>>>> theirs
+                android:text="Benefit"
+                android:textColor="?attr/colorTextSecondary"
+                android:textSize="12sp"
                 android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/llBenefitContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-<<<<<<< ours
-                android:layout_marginTop="8dp"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btnDaftar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Daftar Event"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/bg_button_primary"
-                android:textColor="?attr/colorOnPrimary"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</LinearLayout>
-=======
                 android:layout_marginBottom="24dp"
+                android:orientation="vertical"
                 android:visibility="gone" />
 
-            <!-- Tombol Daftar Event -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDaftar"
                 style="@style/Widget.Material3.Button"
@@ -305,12 +193,10 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 app:backgroundTint="@color/indigo_primary"
-                app:cornerRadius="12dp"
-                android:stateListAnimator="@null" />
+                app:cornerRadius="12dp" />
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
->>>>>>> theirs

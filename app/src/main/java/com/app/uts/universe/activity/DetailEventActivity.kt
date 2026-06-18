@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.app.uts.universe.database.DatabaseHelper
 import com.app.uts.universe.R
+import com.app.uts.universe.ThemeManager
 import com.google.android.material.appbar.MaterialToolbar
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -18,6 +19,8 @@ class DetailEventActivity : AppCompatActivity() {
     private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Apply saved theme so UI uses correct color attributes
+        ThemeManager.applySavedTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_event)
 

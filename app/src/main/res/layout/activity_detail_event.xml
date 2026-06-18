@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#0F172A">
+        android:background="?attr/colorBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:textColor="#F1F5F9"/>
+                    android:textColor="?attr/colorTextPrimary"/>
 
                 <TextView
                     android:id="@+id/tvKategori"
@@ -48,20 +48,20 @@
                     android:background="@drawable/bg_badge_kategori"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:textColor="#A5B4FC"/>
+                    android:textColor="@color/indigo_soft"/>
 
                 <TextView
                     android:id="@+id/tvTanggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textColor="#94A3B8"/>
+                    android:textColor="?attr/colorTextSecondary"/>
 
                 <TextView
                     android:id="@+id/tvLokasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#94A3B8"/>
+                    android:textColor="?attr/colorTextSecondary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -69,13 +69,13 @@
                     android:text="Deskripsi"
                     android:textStyle="bold"
                     android:layout_marginTop="16dp"
-                    android:textColor="#F1F5F9"/>
+                    android:textColor="?attr/colorTextPrimary"/>
 
                 <TextView
                     android:id="@+id/tvDeskripsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#F1F5F9"/>
+                    android:textColor="?attr/colorTextPrimary"/>
 
             </LinearLayout>
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="Benefit"
                 android:textStyle="bold"
-                android:textColor="#F1F5F9"
+                android:textColor="?attr/colorTextPrimary"
                 android:layout_marginTop="16dp"
                 android:visibility="gone" />
 
@@ -105,7 +105,7 @@
                 android:text="Daftar Event"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/bg_button_primary"
-                android:textColor="#FFFFFF"/>
+                android:textColor="?attr/colorOnPrimary"/>
 
         </LinearLayout>
 

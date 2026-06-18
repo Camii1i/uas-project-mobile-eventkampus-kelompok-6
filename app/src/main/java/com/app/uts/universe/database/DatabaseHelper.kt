@@ -8,7 +8,7 @@ import com.app.uts.universe.model.Event
 import com.app.uts.universe.model.Riwayat
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "eventkampus.db", null, 2) { // Naikkan versi ke 2 agar tabel riwayat terbuat
+    SQLiteOpenHelper(context, "eventkampus.db", null, 3) { // Naikkan versi ke 3 untuk menambah kolom benefit
 
     override fun onCreate(db: SQLiteDatabase) {
 
@@ -23,7 +23,7 @@ class DatabaseHelper(context: Context) :
             )
         """.trimIndent())
 
-        // Tabel Event
+        // Tabel Event (ditambahkan kolom `benefit` sebagai TEXT, delimiter: newline)
         db.execSQL("""
             CREATE TABLE event (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -31,7 +31,8 @@ class DatabaseHelper(context: Context) :
                 kategori TEXT,
                 tanggal TEXT,
                 lokasi TEXT,
-                deskripsi TEXT
+                deskripsi TEXT,
+                benefit TEXT
             )
         """.trimIndent())
 
@@ -63,10 +64,18 @@ class DatabaseHelper(context: Context) :
         oldVersion: Int,
         newVersion: Int
     ) {
-        db.execSQL("DROP TABLE IF EXISTS user")
-        db.execSQL("DROP TABLE IF EXISTS event")
-        db.execSQL("DROP TABLE IF EXISTS riwayat") // Tambahan drop tabel
-        onCreate(db)
+        // Jika upgrade dari versi lama, tambahkan kolom `benefit` tanpa menghapus data
+        if (oldVersion < 3) {
+            try {
+                db.execSQL("ALTER TABLE event ADD COLUMN benefit TEXT")
+            } catch (e: Exception) {
+                // jika ALTER TABLE gagal (mis. kolom sudah ada), fallback ke drop+create
+                db.execSQL("DROP TABLE IF EXISTS user")
+                db.execSQL("DROP TABLE IF EXISTS event")
+                db.execSQL("DROP TABLE IF EXISTS riwayat")
+                onCreate(db)
+            }
+        }
     }
 
     fun checkLogin(username: String, password: String): String? {
@@ -88,7 +97,8 @@ class DatabaseHelper(context: Context) :
         kategori: String,
         tanggal: String,
         lokasi: String,
-        deskripsi: String
+        deskripsi: String,
+        benefit: String = ""
     ): Boolean {
         val db = writableDatabase
         val values = ContentValues()
@@ -98,6 +108,7 @@ class DatabaseHelper(context: Context) :
         values.put("tanggal", tanggal)
         values.put("lokasi", lokasi)
         values.put("deskripsi", deskripsi)
+        values.put("benefit", benefit)
 
         val result = db.insert("event", null, values)
         return result != -1L
@@ -116,7 +127,9 @@ class DatabaseHelper(context: Context) :
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getString(5)
+                    cursor.getString(5),
+                    // benefit may be null if old row; guard with try/catch
+                    if (!cursor.isNull(6)) cursor.getString(6) else ""
                 )
                 listEvent.add(event)
             } while (cursor.moveToNext())
@@ -131,7 +144,8 @@ class DatabaseHelper(context: Context) :
         kategori: String,
         tanggal: String,
         lokasi: String,
-        deskripsi: String
+        deskripsi: String,
+        benefit: String = ""
     ): Boolean {
         val db = writableDatabase
         val values = ContentValues()
@@ -141,6 +155,7 @@ class DatabaseHelper(context: Context) :
         values.put("tanggal", tanggal)
         values.put("lokasi", lokasi)
         values.put("deskripsi", deskripsi)
+        values.put("benefit", benefit)
 
         val result = db.update("event", values, "id=?", arrayOf(id.toString()))
         return result > 0

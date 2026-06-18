@@ -67,6 +67,7 @@ class MahasiswaEventAdapter(
             intent.putExtra("tanggal", event.tanggal)
             intent.putExtra("lokasi", event.lokasi)
             intent.putExtra("deskripsi", event.deskripsi)
+            intent.putExtra("benefit", event.benefit)
             intent.putExtra("id", event.id)
             intent.putExtra("username", username)
             holder.itemView.context.startActivity(intent)

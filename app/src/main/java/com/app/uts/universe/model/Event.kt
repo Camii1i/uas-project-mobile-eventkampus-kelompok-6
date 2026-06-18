@@ -7,4 +7,5 @@ data class Event(
     val tanggal: String,
     val lokasi: String,
     val deskripsi: String,
+    val benefit: String = ""
 )

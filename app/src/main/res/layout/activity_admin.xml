@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?attr/colorBackground"
-    android:padding="16dp">
+    android:background="?attr/colorBackground">
 
-    <!-- Header Section -->
+    <!-- Header (copied from old AdminActivity) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingBottom="16dp">
+        android:padding="16dp">
 
         <TextView
             android:layout_width="0dp"
@@ -25,7 +24,6 @@
             android:textStyle="bold"
             android:textColor="?attr/colorTextPrimary" />
 
-        <!-- Profile Avatar Button -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btnProfileAdmin"
             android:layout_width="44dp"
@@ -37,7 +35,7 @@
             app:strokeWidth="0dp"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground">
+            android:foreground="?attr/selectableItemBackground" >
 
             <ImageView
                 android:layout_width="match_parent"
@@ -45,7 +43,6 @@
                 android:padding="10dp"
                 android:src="@android:drawable/ic_menu_myplaces"
                 app:tint="@color/light_card" />
-
         </com.google.android.material.card.MaterialCardView>
 
         <Button
@@ -56,123 +53,23 @@
             android:text="Keluar"
             android:backgroundTint="@color/danger"
             android:textColor="#FFFFFF" />
-
     </LinearLayout>
 
-    <!-- Form Section -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="?attr/colorCard"
-        app:strokeColor="?attr/colorBorder"
-        app:strokeWidth="1dp"
-        android:layout_marginBottom="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/InputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nama Event"
-                android:layout_marginBottom="8dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNamaEvent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/InputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Kategori"
-                android:layout_marginBottom="8dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etKategori"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/InputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Tanggal"
-                android:layout_marginBottom="8dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etTanggal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/InputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Lokasi"
-                android:layout_marginBottom="8dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etLokasi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/InputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Deskripsi"
-                android:layout_marginBottom="12dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etDeskripsi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/InputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Benefit (pisahkan baris baru untuk tiap item)"
-                android:layout_marginBottom="12dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etBenefit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:minLines="2" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSimpan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Simpan Event"
-                app:cornerRadius="14dp" />
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kelola Daftar Event"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="?attr/colorTextPrimary"
-        android:layout_marginBottom="12dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvEvent"
+    <!-- ViewPager2 for the three admin fragments -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerAdmin"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <!-- Bottom navigation for admin tabs -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorCard"
+        app:itemIconTint="@color/indigo_primary"
+        app:itemTextColor="@color/indigo_primary"
+        app:menu="@menu/bottom_nav_admin_menu" />
 
 </LinearLayout>

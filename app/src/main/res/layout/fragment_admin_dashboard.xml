@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorBackground">
+
+    <!-- Toggle bar for view mode -->
+    <LinearLayout
+        android:id="@+id/toggleViewModeAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_toggle_container"
+        android:padding="3dp"
+        android:layout_margin="16dp">
+
+        <LinearLayout
+            android:id="@+id/btnListModeAdmin"
+            android:layout_width="34dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
+            <ImageView
+                android:id="@+id/ivListModeAdmin"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_list"
+                app:tint="?attr/colorTextPrimary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnGridModeAdmin"
+            android:layout_width="34dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
+            <ImageView
+                android:id="@+id/ivGridModeAdmin"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_grid"
+                app:tint="?attr/colorTextPrimary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnCardModeAdmin"
+            android:layout_width="34dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
+            <ImageView
+                android:id="@+id/ivCardModeAdmin"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_card"
+                app:tint="?attr/colorTextPrimary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEventAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
+
+</LinearLayout>

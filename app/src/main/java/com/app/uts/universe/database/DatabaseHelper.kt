@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.app.uts.universe.model.Event
 import com.app.uts.universe.model.Riwayat
+import com.app.uts.universe.model.User
 
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, "eventkampus.db", null, 3) { // Naikkan versi ke 3 untuk menambah kolom benefit
@@ -170,6 +171,26 @@ class DatabaseHelper(context: Context) :
     // ==========================================
     // TAMBAHAN FUNGSI UNTUK MAHASISWA (RIWAYAT)
     // ==========================================
+
+    // 0. Get all mahasiswa (admin view)
+    fun getAllMahasiswa(): ArrayList<User> {
+        val listUser = ArrayList<User>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT id, nama, username FROM user WHERE role = ?", arrayOf("mahasiswa"))
+        if (cursor.moveToFirst()) {
+            do {
+                listUser.add(User(
+                    cursor.getInt(0),
+                    cursor.getString(1) ?: "",
+                    cursor.getString(2) ?: ""
+                ))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return listUser
+    }
+
+    // 1. Fungsi Create (Daftar Event)
 
     // 1. Fungsi Create (Daftar Event)
     fun insertRiwayat(

@@ -1,31 +1,40 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Base.Theme.UniVerse" parent="Theme.Material3.DayNight.NoActionBar">
+
         <item name="colorPrimary">@color/indigo_primary</item>
         <item name="colorOnPrimary">@color/light_card</item>
         <item name="colorSurface">@color/light_card</item>
         <item name="colorOnSurface">@color/light_text_primary</item>
+
         <item name="android:colorBackground">@color/light_background</item>
+        <item name="android:windowBackground">@color/light_background</item>
         <item name="android:textColorPrimary">@color/light_text_primary</item>
         <item name="android:textColorSecondary">@color/light_text_secondary</item>
 
-        <!-- Attr adaptif Light -->
+        <!-- Tambahkan ini -->
+        <item name="android:windowAnimationStyle">@style/FadeAnimation</item>
+
+        <!-- Custom Attributes -->
         <item name="colorBackground">@color/light_background</item>
         <item name="colorCard">@color/light_card</item>
         <item name="colorBorder">@color/light_border</item>
         <item name="colorTextPrimary">@color/light_text_primary</item>
         <item name="colorTextSecondary">@color/light_text_secondary</item>
         <item name="colorTextMuted">@color/light_text_muted</item>
+
     </style>
 
     <style name="Theme.UniVerse" parent="Base.Theme.UniVerse" />
 
-    <style name="InputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="InputStyle"
+        parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
         <item name="boxStrokeColor">@color/light_border</item>
         <item name="boxBackgroundColor">@color/light_card</item>
         <item name="hintTextColor">@color/light_text_muted</item>
         <item name="android:textColorHint">@color/light_text_muted</item>
-        <item name="android:windowAnimationStyle">@style/FadeAnimation</item>
+
     </style>
 
     <style name="FadeAnimation">

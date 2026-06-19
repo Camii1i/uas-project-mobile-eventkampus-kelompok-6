@@ -1,7 +1,8 @@
 package com.app.uts.universe
 
-import android.app.Activity
 import android.content.Context
+import android.app.Activity
+import com.app.uts.universe.R
 import androidx.appcompat.app.AppCompatDelegate
 
 object ThemeManager {
@@ -11,23 +12,31 @@ object ThemeManager {
 
     fun isDarkMode(context: Context): Boolean {
         val pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        return pref.getBoolean(KEY_IS_DARK, true) // default dark
+        return pref.getBoolean(KEY_IS_DARK, true)
     }
 
     fun toggleTheme(activity: Activity) {
+        // Apply custom fade transition BEFORE changing the night mode, so the animation
+        // is attached to the recreation triggered by AppCompatDelegate.
+        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         val pref = activity.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val current = isDarkMode(activity)
-        pref.edit().putBoolean(KEY_IS_DARK, !current).apply()
-        applyTheme(!current)
-        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
+        val newTheme = !isDarkMode(activity)
+
+        pref.edit()
+            .putBoolean(KEY_IS_DARK, newTheme)
+            .apply()
+
+        applyTheme(newTheme)
     }
 
     fun applyTheme(isDark: Boolean) {
-        if (isDark) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDark)
+                AppCompatDelegate.MODE_NIGHT_YES
+            else
+                AppCompatDelegate.MODE_NIGHT_NO
+        )
     }
 
     fun applySavedTheme(context: Context) {

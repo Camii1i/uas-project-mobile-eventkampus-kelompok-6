@@ -70,7 +70,6 @@ class HomeActivity : AppCompatActivity() {
     private fun setupListeners() {
         btnToggleTheme.setOnClickListener {
             ThemeManager.toggleTheme(this)
-            updateThemeButton()
         }
 
         btnProfile.setOnClickListener {

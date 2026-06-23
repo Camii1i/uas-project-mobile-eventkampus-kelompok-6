@@ -15,6 +15,7 @@ object ThemeManager {
         return pref.getBoolean(KEY_IS_DARK, true)
     }
 
+    @Suppress("DEPRECATION")
     fun toggleTheme(activity: Activity) {
         activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         val pref = activity.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)

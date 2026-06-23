@@ -21,14 +21,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Animasi fade-in
         val root = findViewById<View>(R.id.splashRoot)
         root.animate()
             .alpha(1f)
             .setDuration(600)
             .start()
 
-        // Navigasi setelah delay
         lifecycleScope.launch {
             delay(SPLASH_DURATION)
             navigateToNext()

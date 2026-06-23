@@ -25,7 +25,6 @@ class HomeActivity : AppCompatActivity() {
     private var username = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Wajib panggil ThemeManager.applyTheme(this) sebelum super.onCreate()
         ThemeManager.applySavedTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -82,10 +81,8 @@ class HomeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("user_pref", Context.MODE_PRIVATE)
         val nama = sharedPref.getString("nama", null)
         
-        // Tampilkan username dari intent jika nama di pref kosong
         tvUsername.text = nama ?: username
         
-        // Set inisial avatar
         val initialSource = nama ?: username
         if (initialSource.isNotEmpty()) {
             tvInitial.text = initialSource[0].uppercaseChar().toString()
@@ -102,7 +99,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Reload data jika user baru saja edit profil
         loadUserData()
     }
 }

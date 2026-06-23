@@ -31,7 +31,6 @@ class MahasiswaEventAdapter(
         val tvKategori: TextView = itemView.findViewById(R.id.tvKategori)
         val tvTanggal: TextView = itemView.findViewById(R.id.tvTanggal)
         val tvLokasi: TextView = itemView.findViewById(R.id.tvLokasi)
-        // btnDetail tidak ada di layout Card, jadi nullable
         val btnDetail: MaterialButton? = itemView.findViewById(R.id.btnDetail)
     }
 
@@ -74,10 +73,8 @@ class MahasiswaEventAdapter(
         }
 
         if (holder.btnDetail != null) {
-            // Mode List & Grid: tombol Detail yang diklik
             holder.btnDetail.setOnClickListener(openDetail)
         } else {
-            // Mode Card: seluruh card yang diklik
             holder.itemView.setOnClickListener(openDetail)
         }
     }

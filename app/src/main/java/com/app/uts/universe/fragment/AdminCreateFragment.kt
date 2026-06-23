@@ -45,7 +45,6 @@ class AdminCreateFragment : Fragment() {
         etBenefit  = view.findViewById(R.id.etBenefit)
         btnSimpan  = view.findViewById(R.id.btnSimpan)
 
-        // Isi form jika ada event yang mau di-edit dari Dashboard
         sharedViewModel.eventToEdit.observe(viewLifecycleOwner) { event ->
             if (event != null) {
                 selectedEventId = event.id

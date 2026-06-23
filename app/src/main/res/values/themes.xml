@@ -12,10 +12,10 @@
         <item name="android:textColorPrimary">@color/light_text_primary</item>
         <item name="android:textColorSecondary">@color/light_text_secondary</item>
 
-        <!-- Tambahkan ini -->
+        
         <item name="android:windowAnimationStyle">@style/FadeAnimation</item>
 
-        <!-- Custom Attributes -->
+        
         <item name="colorBackground">@color/light_background</item>
         <item name="colorCard">@color/light_card</item>
         <item name="colorBorder">@color/light_border</item>

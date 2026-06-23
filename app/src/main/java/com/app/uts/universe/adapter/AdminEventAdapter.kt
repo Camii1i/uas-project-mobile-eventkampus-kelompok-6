@@ -10,10 +10,6 @@ import com.app.uts.universe.R
 import com.app.uts.universe.util.AdminViewModeManager
 import com.app.uts.universe.model.Event
 
-/**
- * Adapter for admin event list. Supports three view types (list, grid, card) via
- * AdminViewModeManager. Each item includes Edit and Delete buttons.
- */
 class AdminEventAdapter(
     private val listEvent: ArrayList<Event>,
     private val listener: OnEventClickListener

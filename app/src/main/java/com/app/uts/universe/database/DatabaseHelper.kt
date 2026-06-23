@@ -9,11 +9,10 @@ import com.app.uts.universe.model.Riwayat
 import com.app.uts.universe.model.User
 
 class DatabaseHelper(context: Context) :
-    SQLiteOpenHelper(context, "eventkampus.db", null, 3) { // Naikkan versi ke 3 untuk menambah kolom benefit
+    SQLiteOpenHelper(context, "eventkampus.db", null, 3) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
-        // Tabel User
         db.execSQL("""
             CREATE TABLE user (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +23,6 @@ class DatabaseHelper(context: Context) :
             )
         """.trimIndent())
 
-        // Tabel Event (ditambahkan kolom `benefit` sebagai TEXT, delimiter: newline)
         db.execSQL("""
             CREATE TABLE event (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -37,7 +35,6 @@ class DatabaseHelper(context: Context) :
             )
         """.trimIndent())
 
-        // --- TAMBAHAN BARU: Tabel Riwayat ---
         db.execSQL("""
             CREATE TABLE riwayat (
                 id_riwayat INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,7 +45,6 @@ class DatabaseHelper(context: Context) :
             )
         """.trimIndent())
 
-        // Akun admin bawaan
         db.execSQL("""
             INSERT INTO user (nama, username, password, role)
             VALUES (
@@ -65,12 +61,10 @@ class DatabaseHelper(context: Context) :
         oldVersion: Int,
         newVersion: Int
     ) {
-        // Jika upgrade dari versi lama, tambahkan kolom `benefit` tanpa menghapus data
         if (oldVersion < 3) {
             try {
                 db.execSQL("ALTER TABLE event ADD COLUMN benefit TEXT")
             } catch (e: Exception) {
-                // jika ALTER TABLE gagal (mis. kolom sudah ada), fallback ke drop+create
                 db.execSQL("DROP TABLE IF EXISTS user")
                 db.execSQL("DROP TABLE IF EXISTS event")
                 db.execSQL("DROP TABLE IF EXISTS riwayat")
@@ -129,7 +123,6 @@ class DatabaseHelper(context: Context) :
                     cursor.getString(3),
                     cursor.getString(4),
                     cursor.getString(5),
-                    // benefit may be null if old row; guard with try/catch
                     if (!cursor.isNull(6)) cursor.getString(6) else ""
                 )
                 listEvent.add(event)
@@ -168,11 +161,7 @@ class DatabaseHelper(context: Context) :
         return result > 0
     }
 
-    // ==========================================
-    // TAMBAHAN FUNGSI UNTUK MAHASISWA (RIWAYAT)
-    // ==========================================
 
-    // 0. Get all mahasiswa (admin view)
     fun getAllMahasiswa(): ArrayList<User> {
         val listUser = ArrayList<User>()
         val db = readableDatabase
@@ -190,9 +179,7 @@ class DatabaseHelper(context: Context) :
         return listUser
     }
 
-    // 1. Fungsi Create (Daftar Event)
 
-    // 1. Fungsi Create (Daftar Event)
     fun insertRiwayat(
         usernameMahasiswa: String,
         idEvent: Int,
@@ -211,12 +198,10 @@ class DatabaseHelper(context: Context) :
         return result != -1L
     }
 
-    // 2. Fungsi Read (Ambil Data Riwayat sesuai username yang login)
     fun getRiwayatMahasiswa(usernameMahasiswa: String): ArrayList<Riwayat> {
         val listRiwayat = ArrayList<Riwayat>()
         val db = readableDatabase
 
-        // Menggunakan rawQuery (CMD) dengan kondisi WHERE username = ?
         val cursor = db.rawQuery(
             "SELECT * FROM riwayat WHERE username_mahasiswa = ?",
             arrayOf(usernameMahasiswa)
@@ -225,11 +210,11 @@ class DatabaseHelper(context: Context) :
         if (cursor.moveToFirst()) {
             do {
                 val riwayat = Riwayat(
-                    cursor.getInt(0),     // id_riwayat
-                    cursor.getString(1),  // username_mahasiswa
-                    cursor.getInt(2),     // id_event
-                    cursor.getString(3),  // nama_event
-                    cursor.getString(4)   // tanggal_daftar
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getInt(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
                 )
                 listRiwayat.add(riwayat)
             } while (cursor.moveToNext())

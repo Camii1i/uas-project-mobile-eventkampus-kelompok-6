@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Register berhasil", Toast.LENGTH_SHORT).show()
 
-                finish() // kembali ke Login
+                finish()
             }
         }
     }

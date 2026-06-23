@@ -31,14 +31,12 @@ class AdminActivity : AppCompatActivity() {
 
         viewPagerAdmin.adapter = AdminViewPagerAdapter(this)
 
-        // Sinkronisasi swipe -> bottom nav
         viewPagerAdmin.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 bottomNavigationAdmin.menu.getItem(position).isChecked = true
             }
         })
 
-        // Bottom nav tap -> pindah halaman
         bottomNavigationAdmin.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_dashboard  -> viewPagerAdmin.currentItem = 0
@@ -55,7 +53,6 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
-    /** Dipanggil dari AdminDashboardFragment saat tombol Edit ditekan */
     fun goToCreateTab() {
         viewPagerAdmin.currentItem = 1
     }

@@ -16,8 +16,6 @@ object ThemeManager {
     }
 
     fun toggleTheme(activity: Activity) {
-        // Apply custom fade transition BEFORE changing the night mode, so the animation
-        // is attached to the recreation triggered by AppCompatDelegate.
         activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         val pref = activity.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 

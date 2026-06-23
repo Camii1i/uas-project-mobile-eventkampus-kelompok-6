@@ -71,7 +71,6 @@ class RiwayatFragment : Fragment() {
         adapter = RiwayatAdapter(listRiwayat)
         rvRiwayat.adapter = adapter
 
-        // Pakai ViewModeManager yang sama dengan HomeFragment (mode shared)
         val savedMode = ViewModeManager.getViewMode(requireContext())
         applyViewMode(savedMode)
 
@@ -82,7 +81,6 @@ class RiwayatFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Sinkronkan tampilan jika mode diubah dari HomeFragment selagi fragment ini tidak terlihat
         val currentMode = ViewModeManager.getViewMode(requireContext())
         applyViewMode(currentMode)
     }

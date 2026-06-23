@@ -12,7 +12,7 @@ object ViewModeManager {
 
     fun getViewMode(context: Context): Int {
         val pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        return pref.getInt(KEY_VIEW_MODE, MODE_LIST) // default: list
+        return pref.getInt(KEY_VIEW_MODE, MODE_LIST)
     }
 
     fun setViewMode(context: Context, mode: Int) {

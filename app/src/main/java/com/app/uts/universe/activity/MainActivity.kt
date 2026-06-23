@@ -30,12 +30,10 @@ class MainActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val tvRegister = findViewById<TextView>(R.id.tvRegister)
 
-        // Pindah ke halaman register
         tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        // Login
         btnLogin.setOnClickListener {
 
             val username = etUsername.text.toString().trim()
@@ -79,11 +77,9 @@ class MainActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    // Simpan session username ke SharedPreferences agar bisa diakses di Profile
                     val sharedPref = getSharedPreferences("user_pref", Context.MODE_PRIVATE)
                     sharedPref.edit().putString("username", username).apply()
 
-                    // Kirim username ke HomeActivity
                     val intent = Intent(this, HomeActivity::class.java)
 
                     intent.putExtra(

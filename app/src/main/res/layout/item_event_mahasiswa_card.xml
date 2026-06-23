@@ -24,7 +24,7 @@
         android:paddingHorizontal="14dp"
         android:paddingVertical="12dp">
 
-        <!-- Aksen warna kategori, garis vertikal indigo -->
+        
         <View
             android:layout_width="4dp"
             android:layout_height="36dp"

@@ -22,17 +22,15 @@ class SuccessActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvTanggalSuccess).text = tanggal
         findViewById<TextView>(R.id.tvLokasiSuccess).text = lokasi
 
-        // Tombol Lihat Riwayat
         findViewById<Button>(R.id.btnLihatRiwayat).setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra("username", username)
-            intent.putExtra("openRiwayat", true) // sinyal buka tab riwayat
+            intent.putExtra("openRiwayat", true)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
             finish()
         }
 
-        // Tombol Kembali ke Home
         findViewById<Button>(R.id.btnKembaliHome).setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra("username", username)

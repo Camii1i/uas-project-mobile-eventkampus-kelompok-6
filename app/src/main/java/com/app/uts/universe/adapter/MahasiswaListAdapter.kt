@@ -8,9 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.uts.universe.R
 import com.app.uts.universe.model.User
 
-/**
- * Read‑only adapter for displaying the list of mahasiswa in the admin UI.
- */
 class MahasiswaListAdapter(private val listUser: List<User>) : RecyclerView.Adapter<MahasiswaListAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

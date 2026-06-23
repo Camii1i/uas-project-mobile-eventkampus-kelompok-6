@@ -27,7 +27,6 @@ class ProfileAdminActivity : AppCompatActivity() {
     private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Wajib panggil ThemeManager sebelum super.onCreate()
         ThemeManager.applySavedTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_admin)
@@ -49,7 +48,6 @@ class ProfileAdminActivity : AppCompatActivity() {
         btnEditAdminProfile = findViewById(R.id.btnEditAdminProfile)
         btnAdminLogout = findViewById(R.id.btnAdminLogout)
 
-        // Toolbar back button
         findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.toolbar).setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -65,14 +63,12 @@ class ProfileAdminActivity : AppCompatActivity() {
         tvAdminProfileEmail.text = email
         tvAdminRole.text = role
         
-        // Set inisial
         if (nama.isNotEmpty()) {
             tvAdminInitial.text = nama[0].uppercaseChar().toString()
         }
     }
 
     private fun loadStatistics() {
-        // READ ONLY query SELECT COUNT dari DatabaseHelper
         val db = dbHelper.readableDatabase
         val cursor = db.rawQuery("SELECT COUNT(*) FROM event", null)
         if (cursor.moveToFirst()) {
@@ -97,7 +93,6 @@ class ProfileAdminActivity : AppCompatActivity() {
         val etEditNama = dialogView.findViewById<EditText>(R.id.etEditNama)
         val etEditEmail = dialogView.findViewById<EditText>(R.id.etEditEmail)
 
-        // Set current values
         etEditNama.setText(tvAdminProfileName.text)
         etEditEmail.setText(tvAdminProfileEmail.text)
 

@@ -27,12 +27,10 @@ class ProfileMahasiswaActivity : AppCompatActivity() {
     private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Wajib panggil ThemeManager.applyTheme(this) sebelum super.onCreate()
         ThemeManager.applySavedTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_mahasiswa)
 
-        // Inisialisasi dbHelper
         dbHelper = DatabaseHelper(this)
 
         initViews()
@@ -48,7 +46,6 @@ class ProfileMahasiswaActivity : AppCompatActivity() {
         btnEditProfile = findViewById(R.id.btnEditProfile)
         btnLogout = findViewById(R.id.btnLogout)
 
-        // Toolbar back button
         findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.toolbar).setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -60,7 +57,6 @@ class ProfileMahasiswaActivity : AppCompatActivity() {
 
         var nama = ""
         
-        // Ambil NAMA asli dari database 'user' berdasarkan username login
         if (username.isNotEmpty()) {
             val db = dbHelper.readableDatabase
             val cursor = db.rawQuery("SELECT nama FROM user WHERE username = ?", arrayOf(username))
@@ -70,7 +66,6 @@ class ProfileMahasiswaActivity : AppCompatActivity() {
             cursor.close()
         }
 
-        // Fallback ke SharedPreferences jika database tidak mengembalikan hasil
         if (nama.isEmpty()) {
             nama = sharedPref.getString("nama", username.ifEmpty { "Mahasiswa" }) ?: "Mahasiswa"
         }
@@ -82,7 +77,6 @@ class ProfileMahasiswaActivity : AppCompatActivity() {
         tvProfileNim.text = nim
         tvProfileEmail.text = email
         
-        // Set inisial avatar
         if (nama.isNotEmpty()) {
             tvAvatarInitial.text = nama[0].uppercaseChar().toString()
         }
@@ -129,7 +123,6 @@ class ProfileMahasiswaActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("user_pref", Context.MODE_PRIVATE)
         val username = sharedPref.getString("username", "") ?: ""
 
-        // Update data NAMA di database agar tersinkronisasi
         if (username.isNotEmpty()) {
             val db = dbHelper.writableDatabase
             val values = ContentValues()
@@ -137,7 +130,6 @@ class ProfileMahasiswaActivity : AppCompatActivity() {
             db.update("user", values, "username = ?", arrayOf(username))
         }
 
-        // Update di SharedPreferences untuk NIM dan Email (karena tidak ada di tabel user)
         with(sharedPref.edit()) {
             putString("nama", nama)
             putString("email", email)

@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Header Section -->
+            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Badge ADMIN -->
+                
                 <TextView
                     android:id="@+id/tvAdminBadge"
                     android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <!-- Nama Admin -->
+                
                 <TextView
                     android:id="@+id/tvAdminProfileName"
                     android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
-                <!-- Email Admin -->
+                
                 <TextView
                     android:id="@+id/tvAdminProfileEmail"
                     android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- Statistik Card -->
+                
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Info Card Role -->
+                
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Actions -->
+                
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnEditAdminProfile"
                     style="@style/Widget.Material3.Button"

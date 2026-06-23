@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="?attr/colorBackground">
 
-    <!-- Header (copied from old AdminActivity) -->
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,14 +55,14 @@
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <!-- ViewPager2 for the three admin fragments -->
+    
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerAdmin"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Bottom navigation for admin tabs -->
+    
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationAdmin"
         android:layout_width="match_parent"

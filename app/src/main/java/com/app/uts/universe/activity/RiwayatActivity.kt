@@ -21,7 +21,6 @@ class RiwayatActivity : AppCompatActivity() {
         val rvRiwayat = findViewById<RecyclerView>(R.id.rvRiwayat)
         rvRiwayat.layoutManager = LinearLayoutManager(this)
 
-        // Kamu perlu buat Adapter untuk Riwayat juga
         rvRiwayat.adapter = RiwayatAdapter(listRiwayat)
     }
 }

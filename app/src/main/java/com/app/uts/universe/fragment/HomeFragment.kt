@@ -98,7 +98,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun updateToggleIndicator(mode: Int) {
-        // Reset semua dulu
         btnListMode.setBackgroundResource(0)
         btnGridMode.setBackgroundResource(0)
         btnCardMode.setBackgroundResource(0)
@@ -106,7 +105,6 @@ class HomeFragment : Fragment() {
         ivGridMode.clearColorFilter()
         ivCardMode.clearColorFilter()
 
-        // Set yang aktif
         val activeButton = when (mode) {
             ViewModeManager.MODE_GRID -> btnGridMode to ivGridMode
             ViewModeManager.MODE_CARD -> btnCardMode to ivCardMode
